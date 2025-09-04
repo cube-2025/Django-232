@@ -1,16 +1,28 @@
-from django.http import HttpResponse
+from pyexpat.errors import messages
+
+from django.http import (HttpResponse, HttpResponseRedirect,
+                         HttpResponsePermanentRedirect)
 from django.shortcuts import render
 
 def index(request):
-    return HttpResponse('Главная страница')
-# def about(request):
-#     return HttpResponse('<h2>О сайте</h2>')
-# def contact(request):
-#     return HttpResponse('<h1>Контакты</h1>')
+    # return render(request, 'index.html')
+    # data = {"header": "Параметр header",
+    #         "message": "сообщение"}
+    # return render(request, 'index_app1.html'
+    #               ,context=data)
+    header = "Персональные данные"
+    langs = ["Русский", "Татарский", "Английский"]
+    user = {"name": "Никита", "age": 21}
+    addr = ("Мира", 10, 232)
+    data = {"header": header, "langs": langs, "user":user,
+            "address": addr}
+    return render(request, 'index_app2.html',
+                  data)
+def about(request):
+    return HttpResponse('<h2>О сайте</h2>')
 
-def product(request, productid):
-    output = '<h2>Продукт  {0}</h2>'.format(productid)
-    return HttpResponse(output)
-def users(request, id, name):
-    output = '<h2>Пользователь</h2><h3>id:''{0} Имя: {1} </h3>'.format(id,name)
-    return HttpResponse(output)
+def contact(request):
+    return HttpResponseRedirect("/about")
+
+def details(request):
+    return HttpResponsePermanentRedirect('/')
