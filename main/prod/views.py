@@ -1,8 +1,6 @@
-from pyexpat.errors import messages
-
 from django.http import (HttpResponse, HttpResponseRedirect,
                          HttpResponsePermanentRedirect)
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 def index(request):
     # return render(request, 'index.html')
@@ -23,7 +21,7 @@ def about(request):
     return render(request, 'about.html')
 
 def contact(request):
-    return HttpResponseRedirect("/about")
+    return redirect('about')
 
 def details(request):
     return HttpResponsePermanentRedirect('/')
