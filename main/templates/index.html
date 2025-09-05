@@ -1,11 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Django урок</title>
-</head>
-<body>
-    <h1>Главная страница</h1>
-    <h2>блаблабла</h2>
-</body>
-</html>
+{% extends "base.html"%}
+
+{% block title%}Главная страница{% endblock title%}
+{%block header%}Главная{%  endblock header%}
+
+{%block content%}
+    Текст блока content
+    <a href="{% url 'about'%}">о нас</a>
+{%endblock content%}
